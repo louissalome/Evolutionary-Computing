@@ -1,0 +1,78 @@
+/* GLOBAL PROPERTIES */
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+:root {
+    --mygray: #F0F0F0;
+}
+
+/* FLEX PROPERTIES */
+.flexrow{
+    display : flex;
+    flex-direction : row;
+}
+.flexcolumn{
+    display : flex;
+    flex-direction : column;
+}
+.flexjustifycenter{
+    display : flex;
+    justify-content: center;
+}
+.flexspacebetween{
+    display : flex;
+    justify-content: space-between;
+}
+.flex1{
+    display : flex;
+    flex : 1;
+}
+
+.paddingleft{
+    padding-left : 50px;
+}
+
+.minwidth100{
+    min-width : 100%;
+}
+
+p{
+    font-size: 2em;
+    font-family: Courier;
+}
+
+/* Major Divs */
+#page{
+    position: absolute;
+    top :0;
+    bottom :0;
+    left:0;
+    right:0;
+    min-height: 100vh;
+    min-width : 100vh;
+}
+
+#pageexceptfooter{
+    height: auto;
+}
+
+header{
+    height: 80px;
+    background-color: var(--mygray);
+    width : 100vh;
+}
+
+#canvas-holder{
+    margin-top : 2em;
+    border : 3px black solid;
+    margin-left : 100px;
+    width : 1200px;
+    z-index: -1;
+}
+
+footer{
+    height: 80px;
+    width : 100vh;
+    background-color: var(--mygray);
+}
