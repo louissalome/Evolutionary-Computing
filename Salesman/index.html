@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        
+        <!-- Libraries for drawing -->
+        <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+        <script language="javascript" src="libraries/p5.dom.js"></script>
+        <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->>
+
+        <script src="individual.js"></script>
+        <script src="population.js"></script>
+        <script src="graph.js"></script>
+        <script src="sketch.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <div id="page" class="flexcolumn flexspacebetween">
+        <div id="pageexceptfooter" class="flexcolumn">
+            <header class="minwidth100 paddingleft">
+                <p>Traveler Salesman problem</p>
+            </header>
+
+            <body class="flexcolumn">
+                <div id="canvas-holder" class="marginleft100"></div>
+                <p class="marginleft100" style="max-width : 1400px; font-size : 1.5em; text-align : justify">
+                    This genetic algorithm is looking for a solution to the TSP problem with 131 cities. <br>
+                    How does it works ?<br><br>
+                    
+                    <strong>Mutation : </strong>The mutation is only made of swaps. For every individual, we first do a swap to 
+                    do at least one mutation. Then for every gene, with a probability p = <em>MutationRate</em>, we swap this gene with another one.<br>
+                    A tricky thing is that, the more your solution is good, the more you need to modify details to find new improvements. 
+                    That's why a node will be swapped with another one which is at most at a distance <em>MutationRange</em>. This distance decreases 
+                    exponentially with the generations. And with a probability p = <em>6*MutationRate</em>, the swap is just a swap with any node. As 
+                    the MutationRate is also decreasing exponentially, after a few iterations, most of the swaps will use the MutationRange variable.<br>
+                    One last thing, we keep the mutant if and only if the mutation provided an improvement.<br>
+                    With these methods, the algorithm is pretty fast but can converges to a local optima. By reducing the MutationRange, we forbid new big jumps.<br><br>
+
+                    <strong>Crossover :</strong> The crossover is performed between two individuals. For every individual of the population, we will pick 3 other ones and 
+                    make a selection turnament. Then we perform a 2-points crossover. We take a segment of the genome of the winner of the turnament. This will be the beginning 
+                    of the genome of the child. Then  we look at the last gene of this sequence, and we complete it by reading the genome of the other parents, starting form the 
+                    same gene. Once again, we keep the child if and only if it is better than the parent (not the winner of the turnament).<br><br>
+
+                    <strong>Stop criterion :</strong> As we seen before, this algorithm converges to local optima. Then the stop criterion is 
+                    "If we don't find any improvement during 500 generations, stop the evolution".<br><br>
+
+                    <strong>Last precisions :</strong> <br>
+                    The initial population has 100 individuals.<br>
+                    The distances are stored in an array to avoid useless additional computations.<br>
+                    RangeMutation = Math.floor(dimension*Math.exp(-generation/1000))+7;<br>
+                    mutationRate = 0.2*Math.exp(-generation/2000)+0.02;<br>
+                    The algorithm converges in about 5000 generations and find best score &#60;700, the theoretical best for this example is 564.Check this link : http://www.math.uwaterloo.ca/tsp/vlsi/index.html#XQG237<br>
+                    The whole algorithm is performed with the JS library p5 !<br>
+
+                </p>
+
+            </body>
+        </div>
+
+        <footer class="flexcolumn minwidth100 paddingleft">
+            <p>louissalome</p>
+        </footer>
+    </div>
+
+</html>
